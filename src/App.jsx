@@ -265,20 +265,6 @@ function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
 
-        {/* Badge */}
-        <motion.div
-          className="flex items-center gap-2 px-4 py-2 rounded-full mb-8 border text-sm"
-          style={{ borderColor: 'rgba(184,150,90,0.3)', background: 'rgba(184,150,90,0.08)', color: '#D4AF72' }}
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: EASE }}>
-          <div className="flex gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={11} fill="#D4AF72" stroke="none" />)}
-          </div>
-          <span className="font-medium" style={{ fontFamily: 'var(--font-body)' }}>
-            4,9 · 107 avaliações no Google
-          </span>
-        </motion.div>
-
         {/* Headline stagger por linha */}
         <h1 className="leading-none mb-6" style={{ fontFamily: 'var(--font-display)' }}>
           {/* linha 1 */}
@@ -375,6 +361,65 @@ const SERVICES = [
   { Icon: Activity,     label: 'Tratamento de Canal',     desc: 'Endodontia precisa e sem dor para salvar seu dente natural.' },
   { Icon: CalendarCheck,label: 'Consulta e Avaliação',    desc: 'Avaliação gratuita completa com diagnóstico e plano de tratamento.' },
 ]
+
+/* ── Clinic Photo ──────────────────────────────────────────────── */
+function ClinicPhoto() {
+  return (
+    <section className="py-16 md:py-24 px-6" style={{ background: '#F9F6F0' }}>
+      <div className="max-w-6xl mx-auto">
+        <Rev>
+          <div
+            className="relative w-full rounded-2xl overflow-hidden border"
+            style={{
+              borderColor: 'rgba(184,150,90,0.25)',
+              aspectRatio: '16 / 7',
+              minHeight: 220,
+              background: 'linear-gradient(135deg, #251C14 0%, #1A1410 60%, #2C1F0E 100%)',
+            }}
+          >
+            {/* Ornamentos de canto */}
+            {[
+              'top-0 left-0 border-t border-l rounded-tl-2xl',
+              'top-0 right-0 border-t border-r rounded-tr-2xl',
+              'bottom-0 left-0 border-b border-l rounded-bl-2xl',
+              'bottom-0 right-0 border-b border-r rounded-br-2xl',
+            ].map((cls, i) => (
+              <div
+                key={i}
+                className={`absolute w-8 h-8 md:w-12 md:h-12 ${cls}`}
+                style={{ borderColor: '#B8965A' }}
+              />
+            ))}
+
+            {/* Linhas decorativas horizontais */}
+            <div
+              className="absolute left-12 right-12 md:left-20 md:right-20 top-1/2 -translate-y-1/2 h-px opacity-20"
+              style={{ background: 'linear-gradient(90deg, transparent, #D4AF72, transparent)' }}
+            />
+
+            {/* Texto central */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div
+                className="w-10 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, #B8965A, transparent)' }}
+              />
+              <p
+                className="text-base md:text-lg tracking-[0.18em] font-light"
+                style={{ fontFamily: 'var(--font-display)', color: '#7A6E65', letterSpacing: '0.2em' }}
+              >
+                Foto da Radiante
+              </p>
+              <div
+                className="w-10 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, #B8965A, transparent)' }}
+              />
+            </div>
+          </div>
+        </Rev>
+      </div>
+    </section>
+  )
+}
 
 function ServicesSection() {
   return (
@@ -876,6 +921,7 @@ export default function App() {
       <main>
         <Hero />
         <Marquee />
+        <ClinicPhoto />
         <ServicesSection />
         <Marquee />
         <AuthoritySection />
